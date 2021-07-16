@@ -11,20 +11,13 @@ It interfaces with the [UR drivers](https://github.com/UniversalRobots/Universal
 1. Clone the driver and description to the Armer workspace
 
 ```
-cd ~/armer_ws
-```
-```
+cd ~/armer_ws && \
 git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git src/Universal_Robots_ROS_Driver && git clone -b calibration_devel https://github.com/fmauch/universal_robot.git src/fmauch_universal_robot
-
 ```
 2. Install dependencies
 ```
-sudo apt update -qq 
-``` 
-```
-rosdep update 
-```
-```
+sudo apt update && \
+rosdep update && \
 rosdep install --from-paths src --ignore-src -y
 ```
 3. Build the workspace
@@ -50,9 +43,13 @@ rosdep install --from-paths src --ignore-src -r -y
 ```sh
 catkin_make 
 ```
-5. Run 
+
+## Usage
 ```sh
 roslaunch armer_ur robot_bringup.launch 
 ```
- By default this will launch to control a physical UR5. To run a Swift simulation or specifiy a different UR model, the sim parameter can be set to true and the ur_model parameter can be set to the desired model such as "ur3".
+ By default this will launch to control a physical UR5. To run a Swift simulation or specifiy a different UR model, the sim parameter can be set to true and the ur_model parameter can be set to the desired model such as "ur3". For example:
 
+```sh
+roslaunch armer_ur robot_bringup.launch sim:=true ur_model:=ur3
+```
