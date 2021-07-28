@@ -1,9 +1,15 @@
 # Armer UR
+[![QUT Centre for Robotics Open Source](https://github.com/qcr/qcr.github.io/raw/master/misc/badge.svg)](https://qcr.github.io)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://github.com/suddrey-qut/armer/workflows/Build/badge.svg?branch=master)](https://github.com/suddrey-qut/armer/actions?query=workflow%3ABuild)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/suddrey-qut/armer.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/suddrey-qut/armer/context:python)
+[![Coverage](https://codecov.io/gh/suddrey-qut/armer/branch/master/graph/badge.svg)](https://codecov.io/gh/suddrey-qut/armer)
 
-This package launches the drivers of the UR family of arms for use with the [Armer Driver](https://github.com/qcr/armer).
+*To be used with the [Armer Driver](https://github.com/qcr/armer)*
+
+This package launches the UR drivers for use with the [Armer Driver](https://github.com/qcr/armer).
 
 It interfaces with the [UR drivers](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver) so they must be installed and built as well.
-
 
 ## Installation
 
@@ -12,7 +18,8 @@ It interfaces with the [UR drivers](https://github.com/UniversalRobots/Universal
 
 ```
 cd ~/armer_ws && \
-git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git src/Universal_Robots_ROS_Driver && git clone -b calibration_devel https://github.com/fmauch/universal_robot.git src/fmauch_universal_robot
+git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git src/Universal_Robots_ROS_Driver && \ 
+git clone -b calibration_devel https://github.com/fmauch/universal_robot.git src/fmauch_universal_robot
 ```
 2. Install dependencies
 ```
@@ -33,7 +40,7 @@ The URCap helper program is also required for running on a physical robot.
 cd ~/armer_ws
 ```
 ```sh
-git clone https://github.com/qcr/armer_ur.git src
+git clone https://github.com/qcr/armer_ur.git src/armer_ur
 ```
 3. Install the required dependencies.
 ```sh
