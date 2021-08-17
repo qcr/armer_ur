@@ -17,37 +17,32 @@ It interfaces with the [UR drivers](https://github.com/UniversalRobots/Universal
 1. Clone the driver and description to the Armer workspace
 
 ```
-cd ~/armer_ws && \
-git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git src/Universal_Robots_ROS_Driver && \ 
-git clone -b calibration_devel https://github.com/fmauch/universal_robot.git src/fmauch_universal_robot
+cd ~/armer_ws 
+git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git src/Universal_Robots_ROS_Driver 
+git clone -b calibration_devel https://github.com/fmauch/universal_robot.git src/fmauch_universal_robot 
+cd fmauch_universal_robot 
+rm -r *moveit*
+rm -r *gazebo*
+echo "Completed download and removing Moveit and Gazebo files"
 ```
-2. Install dependencies
+2. Install dependencies and build workspace
 ```
-sudo apt update && \
-rosdep update && \
+sudo apt update 
+rosdep update 
 rosdep install --from-paths src --ignore-src -y
-```
-3. Build the workspace
-```
 catkin_make
+echo "Completed dependency install"
 ```
+
 The URCap helper program is also required for running on a physical robot.
 
 ### Armer UR installation
-1. Clone this repository into the armer_ws/src folder.
+The following code snippet will download the Armer UR hardware package to workspace ~/armer_ws. It will then install dependencies and rebuild the workspace.
 
 ```
 cd ~/armer_ws
-```
-```sh
 git clone https://github.com/qcr/armer_ur.git src/armer_ur
-```
-3. Install the required dependencies.
-```sh
 rosdep install --from-paths src --ignore-src -r -y 
-```
-4. Build the packages.
-```sh
 catkin_make 
 ```
 
