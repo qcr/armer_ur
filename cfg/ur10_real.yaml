@@ -1,7 +1,6 @@
 robots:
   - name: arm # default is panda model roboticstoolbox.models.Panda
-    model: roboticstoolbox.models.UR5
-    type: armer_ur.robots.URROSRobot
+    model: roboticstoolbox.models.UR10
     joint_state_topic: /joint_states # default
     joint_velocity_topic:  /joint_group_vel_controller/command # default
     # origin: [-1, 0, 0, 0, 0, 0] #default (xyzrpy)
@@ -10,6 +9,6 @@ robots:
 backend: 
   type: armer.backends.ROS.ROS
 readonly_backends:
-  - type: roboticstoolbox.backends.Swift.Swift
+ - type: roboticstoolbox.backends.Swift.Swift
 logging: 
   frequency: false
