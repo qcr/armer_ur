@@ -10,6 +10,6 @@ robots:
 backend: 
   type: armer.backends.ROS.ROS
 readonly_backends:
-  - type: roboticstoolbox.backends.Swift.Swift
+  - type: roboticstoolbox.backends.swift.Swift
 logging: 
   frequency: false
