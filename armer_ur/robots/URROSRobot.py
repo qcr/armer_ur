@@ -30,7 +30,6 @@ class URROSRobot(ROSRobot):
                  recover_on_estop: bool = True,
                  *args,
                  **kwargs):
-        
         super().__init__(robot, *args, **kwargs)
         
         self.controller_name = controller_name \
