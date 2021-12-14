@@ -8,6 +8,7 @@ import actionlib
 import roboticstoolbox as rtb
 
 from armer.robots import ROSRobot
+from rospy.core import rospyinfo
 
 from std_srvs.srv import EmptyRequest, EmptyResponse
 from std_srvs.srv import Trigger, TriggerRequest
@@ -29,8 +30,9 @@ class URROSRobot(ROSRobot):
                  recover_on_estop: bool = True,
                  *args,
                  **kwargs):
-
+        
         super().__init__(robot, *args, **kwargs)
+        
         self.controller_name = controller_name \
             if controller_name else self.joint_velocity_topic.split('/')[1]
 

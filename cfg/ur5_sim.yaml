@@ -3,7 +3,8 @@ robots:
     model: roboticstoolbox.models.UR5
     joint_state_topic: /joint_states # default
     joint_velocity_topic:  /joint_group_velocity_controller/joint_velocity # default
-    # origin: [-1, 0, 0, 0, 0, 0] #default (xyzrpy)
+    origin: [0, 0, 0, 0, 0, 0] #default (xyzrpy)
+    modified_qr: [-0.025100303697604742, -2.0494066615328705, 1.9225840197386959, 0.18027279405156277, 1.5960273938060556, 0.016394083165569725]
 backend: 
   type: roboticstoolbox.backends.swift.Swift
 #readonly_backends:
