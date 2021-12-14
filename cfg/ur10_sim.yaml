@@ -7,7 +7,7 @@ robots:
     frequency: 100
     gripper: tool0
 backend: 
-  type: roboticstoolbox.backends.Swift.Swift
+  type: roboticstoolbox.backends.swift.Swift
 #readonly_backends:
 #  - type: roboticstoolbox.backends.PyPlot.PyPlot
 publish_transforms: true

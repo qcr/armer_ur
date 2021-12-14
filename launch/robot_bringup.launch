@@ -40,5 +40,12 @@
     <include file="$(find armer)/launch/armer.launch">
         <arg name="config" value="$(arg config)" />
     </include>
+
+    <!-- Launch the armer_teleop node -->
+    <arg name="teleop_frame" default="tool0" doc="robot end-effector frame for the joy node to teleoperate the robot" />
+    
+    <include file="$(find armer_teleop)/launch/teleop.launch">
+      <arg name="frame_id" value="$(arg teleop_frame)" />
+    </include>
   </group>
 </launch>
