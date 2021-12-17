@@ -45,7 +45,7 @@
     <arg name="teleop_frame" default="tool0" doc="robot end-effector frame for the joy node to teleoperate the robot" />
     
     <include file="$(find armer_teleop)/launch/teleop.launch">
-      <arg name="frame_id" value="$(arg teleop_frame)" />
+      <arg name="frame_id_EE" value="$(arg teleop_frame)" />
     </include>
   </group>
 </launch>
