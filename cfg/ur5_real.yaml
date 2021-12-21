@@ -10,7 +10,7 @@ robots:
     gripper: tool0
 backend: 
   type: armer.backends.ROS.ROS
-readonly_backends:
-  - type: roboticstoolbox.backends.swift.Swift
+# readonly_backends:
+#   - type: roboticstoolbox.backends.swift.Swift
 logging: 
   frequency: false
