@@ -41,7 +41,7 @@
         <arg name="config" value="$(arg config)" />
     </include>
 
-    <!-- Launch the armer_teleop node -->
+    <!-- Launch the armer_teleop node by default on simulation -->
     <arg name="teleop_frame" default="tool0" doc="robot end-effector frame for the joy node to teleoperate the robot" />
     
     <include file="$(find armer_teleop)/launch/teleop.launch">
