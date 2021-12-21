@@ -5,6 +5,7 @@ robots:
     joint_state_topic: /joint_states # default
     joint_velocity_topic:  /joint_group_vel_controller/command # default
     # origin: [-1, 0, 0, 0, 0, 0] #default (xyzrpy)
+    modified_qr: [-0.013234359613055354, -2.1990221122696365, 1.9727588632205173, -2.516099511773277, -1.5805640612767557, 2.4867260456085205]
     frequency: 100
     gripper: tool0
 backend: 
