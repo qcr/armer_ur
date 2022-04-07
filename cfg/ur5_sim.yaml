@@ -4,7 +4,7 @@ robots:
     joint_state_topic: /joint_states # default
     joint_velocity_topic:  /joint_group_velocity_controller/joint_velocity # default
     origin: [0, 0, 0, 0, 0, 0] #default (xyzrpy)
-    modified_qr: [-0.013234359613055354, -2.1990221122696365, 1.9727588632205173, -2.516099511773277, -1.5805640612767557, 2.4867260456085205]
+    modified_qr: [-0.013234359613055354, -2.1990221122696365, 1.9727588632205173, -2.516099511773277, -1.5805640612767557, -1.5578563528154739]
     gripper: tool0
 backend: 
   type: roboticstoolbox.backends.swift.Swift
