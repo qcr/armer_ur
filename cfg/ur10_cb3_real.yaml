@@ -1,16 +1,17 @@
 robots:
   - name: arm # default is panda model roboticstoolbox.models.Panda
     model: roboticstoolbox.models.UR10
+    type: armer_ur.robots.URROSRobot
+    hw_version: cb3
     joint_state_topic: /joint_states # default
     joint_velocity_topic:  /joint_group_vel_controller/command # default
     origin: [0, 0, 0, 0, 0, 0] #default (xyzrpy)
-    modified_qr: [-1.5756098800852028, -0.9402447528673431, -2.1795647583880653, -0.47667227635779863, 1.5341720646314883, 0.19478229467554414] #[1.570796, -1.850049, 1.570796, -1.48353, -1.570796, 0]
+    modified_qr:  [-1.5756098800852028, -0.9402447528673431, -2.1795647583880653, -0.47667227635779863, 1.5341720646314883, 0.19478229467554414] #[1.570796, -1.850049, 1.570796, -1.48353, -1.570796, 0]
     frequency: 100
     gripper: tool0
 backend: 
-  type: roboticstoolbox.backends.swift.Swift
-#readonly_backends:
-#  - type: roboticstoolbox.backends.PyPlot.PyPlot
-publish_transforms: true
+  type: armer.backends.ROS.ROS
+# readonly_backends:
+#  - type: roboticstoolbox.backends.swift.Swift
 logging: 
   frequency: false
