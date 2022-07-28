@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <launch>
-  <arg name="ur_model" default="ur5" />
+  <arg name="ur_model" default="ur10" />
   <arg name="ur_hw_version"  default="cb3" />
   <arg name="sim" default="false" />
 
@@ -11,9 +11,9 @@
     <!-- UR driver (CB3)-->  
     <group if="$(eval ur_hw_version == 'cb3')">
       <arg name="debug" default="false" doc="Debug flag that will get passed on to ur_common.launch"/>
-      <arg name="robot_ip" default="192.168.5.2" doc="IP address by which the robot can be reached."/>
-      <arg name="reverse_port" default="50007" doc="Port that will be opened by the driver to allow direct communication between the driver and the robot controller."/>
-      <arg name="script_sender_port" default="50008" doc="The driver will offer an interface to receive the program's URScript on this port. If the robot cannot connect to this port, `External Control` will stop immediately."/>
+      <arg name="robot_ip" default="192.168.3.11" doc="IP address by which the robot can be reached."/>
+      <arg name="reverse_port" default="50007" doc="(50001)Port that will be opened by the driver to allow direct communication between the driver and the robot controller."/>
+      <arg name="script_sender_port" default="50008" doc="(50002)The driver will offer an interface to receive the program's URScript on this port. If the robot cannot connect to this port, `External Control` will stop immediately."/>
       <arg name="tf_prefix" default="" doc="tf_prefix used for the robot."/>
       <arg name="controllers" default="joint_state_controller joint_group_vel_controller force_torque_sensor_controller" doc="Controllers that are activated by default."/>
       <arg name="stopped_controllers" default="pos_joint_traj_controller speed_scaling_state_controller scaled_pos_joint_traj_controller" doc="Controllers that are initally loaded, but not started."/>
@@ -29,7 +29,7 @@
 
     <!-- UR driver (CB2) -->
     <group if="$(eval ur_hw_version == 'cb2')">
-      <arg name="robot_ip" default="192.168.5.2" doc="IP address by which the robot can be reached."/>
+      <arg name="robot_ip" default="192.168.125.10" doc="IP address by which the robot can be reached."/>
 
       <include file="$(find ur_modern_driver)/launch/$(arg ur_model)_ros_control.launch">
         <arg name="robot_ip" value="$(arg robot_ip)" />
@@ -51,10 +51,10 @@
     </include>
 
     <!-- Launch the armer_teleop node by default on simulation -->
-    <arg name="teleop_frame" default="tool0" doc="robot end-effector frame for the joy node to teleoperate the robot" />
+    <!-- <arg name="teleop_frame" default="tool0" doc="robot end-effector frame for the joy node to teleoperate the robot" />
     
     <include file="$(find armer_teleop)/launch/teleop.launch">
       <arg name="frame_id_EE" value="$(arg teleop_frame)" />
-    </include>
+    </include> -->
   </group>
 </launch>
