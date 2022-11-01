@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="weld_torch">
+  <!-- safety_distance: Minimum safety distance in [m] by which the collision volumes are expanded and which is enforced during robot motions -->
+  <xacro:macro name="weld_torch" params="connected_to:='' rpy:='0 0 0' xyz:='0 0 0'">
+    <xacro:unless value="${connected_to == ''}">
+      <joint name="holder_joint" type="fixed">
+        <parent link="${connected_to}"/>
+        <child link="holder_link"/>
+        <origin xyz="${xyz}" rpy="${rpy}"/>
+      </joint>
+    </xacro:unless>
+
+    <link name="holder_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://armer_ur/data/xacro/meshes/visual/Holder_Torch_ASM_v1.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://armer_ur/data/xacro/meshes/visual/Holder_Torch_ASM_v1.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Reference Link for torch tip (Actual End of Tool for EE Control)-->
+    <link name="custom_tool_link" />
+
+    <joint name="torch_tip_joint" type="fixed">
+      <parent link="holder_link"/>
+      <child link="custom_tool_link"/>
+      <origin xyz="0 0.2225 0.2862" rpy="-0.87 0 0"/>
+    </joint>
+
+  </xacro:macro>
+</robot>

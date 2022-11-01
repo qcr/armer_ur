@@ -3,6 +3,7 @@
   <arg name="ur_model" default="ur10" />
   <arg name="ur_hw_version"  default="cb3" />
   <arg name="sim" default="false" />
+  <arg name="load_weld_gripper" default="false" />
 
   <!-- Physical Robot -->
   <group unless="$(arg sim)">
@@ -46,15 +47,21 @@
   <group if="$(arg sim)">
     <arg name="config" default="$(find armer_ur)/cfg/$(arg ur_model)_sim.yaml" />
 
+    <!-- load robot model into parameter server (used by Armer) -->
+    <param name="robot_description" command="$(find xacro)/xacro '$(find armer_ur)/data/xacro/robots/ur10_weld.urdf.xacro'" if="$(arg load_weld_gripper)"/>
+    <param name="robot_description" command="$(find xacro)/xacro '$(find armer_ur)/data/xacro/robots/ur10_default.urdf.xacro'" unless="$(arg load_weld_gripper)"/>
+
     <include file="$(find armer)/launch/armer.launch">
         <arg name="config" value="$(arg config)" />
     </include>
 
     <!-- Launch the armer_teleop node by default on simulation -->
-    <!-- <arg name="teleop_frame" default="tool0" doc="robot end-effector frame for the joy node to teleoperate the robot" />
-    
+    <arg name="frame_id_EE" default="tool0" doc="robot end-effector frame for the joy node to teleoperate the robot" />
+    <arg name="frame_id_base" default="base_link" doc="robot base frame for the joy node to teleoperate the robot" />
+
     <include file="$(find armer_teleop)/launch/teleop.launch">
-      <arg name="frame_id_EE" value="$(arg teleop_frame)" />
-    </include> -->
+      <arg name="frame_id_EE" value="$(arg frame_id_EE)" />
+      <arg name="frame_id_base" value="$(arg frame_id_base)" />
+    </include>
   </group>
 </launch>
