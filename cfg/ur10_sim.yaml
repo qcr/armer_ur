@@ -6,9 +6,9 @@ robots:
     joint_state_topic: /joint_states # default
     joint_velocity_topic:  /joint_group_vel_controller/command # default
     origin: [0, 0, 0, 0, 0, 0] #default (xyzrpy)
-    Kp: 1.2
-    Ki: 0.8
-    Kd: 0.4
+    Kp: 1.0
+    Ki: 1.2
+    Kd: 0.0
 backend: 
   type: roboticstoolbox.backends.swift.Swift
 #readonly_backends:
