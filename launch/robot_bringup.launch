@@ -3,7 +3,6 @@
   <arg name="ur_model" default="ur10" />
   <arg name="ur_hw_version"  default="cb3" />
   <arg name="sim" default="false" />
-  <arg name="load_weld_gripper" default="false" />
 
   <!-- Physical Robot -->
   <group unless="$(arg sim)">
@@ -46,10 +45,6 @@
   <!-- Simulated Robot -->
   <group if="$(arg sim)">
     <arg name="config" default="$(find armer_ur)/cfg/$(arg ur_model)_sim.yaml" />
-
-    <!-- load robot model into parameter server (used by Armer) -->
-    <param name="robot_description" command="$(find xacro)/xacro '$(find armer_ur)/data/xacro/robots/ur10_weld.urdf.xacro'" if="$(arg load_weld_gripper)"/>
-    <param name="robot_description" command="$(find xacro)/xacro '$(find armer_ur)/data/xacro/robots/ur10_default.urdf.xacro'" unless="$(arg load_weld_gripper)"/>
 
     <include file="$(find armer)/launch/armer.launch">
         <arg name="config" value="$(arg config)" />
