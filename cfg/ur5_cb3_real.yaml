@@ -8,9 +8,9 @@ robots:
     joint_velocity_topic:  /joint_group_vel_controller/command # default
     origin: [0, 0, 0, 0, 0, 0] #default (xyzrpy) position of base
     frequency: 100
-    Kp: 1.0
-    Ki: 1.2
-    Kd: 0.0
+    Kp: 1.05
+    Ki: 1.8
+    Kd: 0.2
 backend: 
   type: armer.backends.ROS.ROS
 # readonly_backends:
