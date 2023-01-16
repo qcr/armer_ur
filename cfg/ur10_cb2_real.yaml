@@ -1,15 +1,17 @@
 robots:
-  - name: arm # default is panda model roboticstoolbox.models.Panda
+  - name: arm 
     type: armer_ur.robots.URROSRobot
     model:
       gripper: tool0
-      qr: [2.4332440186296407, -0.9880204970394164, 2.0429103736571976, -3.5048805876239815, -1.1271428902161924, -2.383732427009879]
+      qr: [-1.57, -0.96, -2.18, -1.57, 1.57, 3.14]
     hw_version: cb2
     joint_state_topic: /joint_states # default
     joint_velocity_topic:  /joint_group_vel_controller/command # default
     origin: [0, 0, 0, 0, 0, 0] #default (xyzrpy)
     frequency: 100
-    gripper: tool0
+    Kp: 1.0
+    Ki: 1.4
+    Kd: 0.0
 backend: 
   type: armer.backends.ROS.ROS
 # readonly_backends:
