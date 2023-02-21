@@ -1,18 +1,18 @@
 robots:
   - name: arm # default (change if required)
-    type: armer_ur.robots.URROSRobot
     model:
-      gripper: tool0
-      qr: [-3.14, -0.96, -2.18, -1.57, 1.57, 3.14]
+      gripper: custom_tool_link #tool0
+      qr: [-3.14, -0.96, -2.18, -1.57, 1.57, 1.5708]
     joint_state_topic: /joint_states # default
     joint_velocity_topic:  /joint_group_vel_controller/command # default
     origin: [0, 0, 0, 0, 0, 0] #default (xyzrpy) position of base
-    frequency: 100
     Kp: 1.0
-    Ki: 1.2
-    Kd: 0.0
+    Ki: 1.8
+    Kd: 0.2
 backend: 
   type: roboticstoolbox.backends.swift.Swift
+#readonly_backends:
+#  - type: roboticstoolbox.backends.PyPlot.PyPlot
 publish_transforms: true
 logging: 
   frequency: false
