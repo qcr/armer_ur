@@ -46,6 +46,8 @@
   <group if="$(arg sim)">
     <arg name="config" default="$(find armer_ur)/cfg/$(arg ur_model)_sim.yaml" />
 
+    <include file="$(find ur_description)/launch/load_$(arg ur_model).launch" />
+
     <include file="$(find armer)/launch/armer.launch">
         <arg name="config" value="$(arg config)" />
     </include>
