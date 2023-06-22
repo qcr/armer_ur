@@ -5,6 +5,7 @@ robots:
     joint_velocity_topic:  /joint_group_velocity_controller/joint_velocity # default
     # origin: [-1, 0, 0, 0, 0, 0] #default (xyzrpy)
     gripper: "tool0"
+    singularity_thresh: 0.02
 backend: 
   type: roboticstoolbox.backends.swift.Swift
 #readonly_backends:
