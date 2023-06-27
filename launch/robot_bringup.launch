@@ -3,6 +3,7 @@
   <arg name="ur_model" default="ur10" />
   <arg name="ur_hw_version"  default="cb3" />
   <arg name="sim" default="false" />
+  <arg name="robot_description_launch" default="$(find ur_description)/launch/load_$(arg ur_model).launch" doc="Robot description launch file."/>
 
   <!-- Physical Robot -->
   <group unless="$(arg sim)">
@@ -18,7 +19,7 @@
       <arg name="controllers" default="joint_state_controller joint_group_vel_controller force_torque_sensor_controller" doc="Controllers that are activated by default."/>
       <arg name="stopped_controllers" default="pos_joint_traj_controller speed_scaling_state_controller scaled_pos_joint_traj_controller" doc="Controllers that are initally loaded, but not started."/>
       <arg name="controller_config_file" default="$(find ur_robot_driver)/config/$(arg ur_model)_controllers.yaml" doc="Config file used for defining the ROS-Control controllers."/>
-      <arg name="robot_description_file" default="$(find ur_description)/launch/load_$(arg ur_model).launch" doc="Robot description launch file."/>
+      <arg name="robot_description_file" default="$(arg robot_description_launch)" doc="Robot description launch file."/>
       <arg name="kinematics_config" default="$(find ur_description)/config/$(arg ur_model)/default_kinematics.yaml" doc="Kinematics config file used for calibration correction. This will be used to verify the robot's calibration is matching the robot_description."/>
       <arg name="headless_mode" default="false" doc="Automatically send URScript to robot to execute. On e-Series this does require the robot to be in 'remote-control' mode. With this, the URCap is not needed on the robot."/>
 
@@ -46,7 +47,7 @@
   <group if="$(arg sim)">
     <arg name="config" default="$(find armer_ur)/cfg/$(arg ur_model)_sim.yaml" />
 
-    <include file="$(find ur_description)/launch/load_$(arg ur_model).launch" />
+    <include file="$(arg robot_description_launch)" />
 
     <include file="$(find armer)/launch/armer.launch">
         <arg name="config" value="$(arg config)" />
@@ -56,9 +57,9 @@
     <arg name="frame_id_EE" default="tool0" doc="robot end-effector frame for the joy node to teleoperate the robot" />
     <arg name="frame_id_base" default="base_link" doc="robot base frame for the joy node to teleoperate the robot" />
 
-    <include file="$(find armer_teleop)/launch/teleop.launch">
+    <!-- <include file="$(find armer_teleop)/launch/teleop.launch">
       <arg name="frame_id_EE" value="$(arg frame_id_EE)" />
       <arg name="frame_id_base" value="$(arg frame_id_base)" />
-    </include>
+    </include> -->
   </group>
 </launch>

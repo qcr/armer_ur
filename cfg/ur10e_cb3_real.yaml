@@ -2,16 +2,14 @@ robots:
   - name: arm 
     type: armer_ur.robots.URROSRobot
     model: 
-      gripper: tool0
-      qr: [-1.57, -0.96, -2.18, -1.57, 1.57, 3.14]
+      gripper: custom_tool_link #tool0
+      qr: [-1.57, -0.96, -2.18, -1.57, 1.57, 0]
     hw_version: cb3
     joint_state_topic: /joint_states # default
     joint_velocity_topic:  /joint_group_vel_controller/command # default
     origin: [0, 0, 0, 0, 0, 0] #default (xyzrpy)
     frequency: 100
-    Kp: 1.0
-    Ki: 1.2
-    Kd: 0.0
+    singularity_thresh: 0.02
 backend: 
   type: armer.backends.ROS.ROS
 # readonly_backends:
