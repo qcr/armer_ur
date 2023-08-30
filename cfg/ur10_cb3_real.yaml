@@ -9,7 +9,7 @@ robots:
     joint_velocity_topic:  /joint_group_vel_controller/command # default
     origin: [0, 0, 0, 0, 0, 0] #default (xyzrpy)
     frequency: 100
-    singularity_thresh: 0.02
+    singularity_thresh: 0.01
 backend: 
   type: armer.backends.ROS.ROS
 publish_transforms: true

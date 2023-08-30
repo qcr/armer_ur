@@ -7,7 +7,7 @@ robots:
     joint_state_topic: /joint_states # default
     joint_velocity_topic:  /joint_group_vel_controller/command # default
     origin: [0, 0, 0, 0, 0, 0] #default (xyzrpy)
-    singularity_thresh: 0.02
+    singularity_thresh: 0.01
 backend: 
   type: roboticstoolbox.backends.swift.Swift
 #readonly_backends:
