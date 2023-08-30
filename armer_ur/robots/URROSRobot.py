@@ -65,14 +65,14 @@ class URROSRobot(ROSRobot):
 
         # Error recovery services
         # NOTE: this section should not be run when using CB2 models
-        if self.hw_version == 'cb3':
-            self.unlock_proxy = rospy.ServiceProxy('/ur_hardware_interface/dashboard/brake_release', Trigger)
-            self.unlock_proxy.wait_for_service()
+        # if self.hw_version == 'cb3':
+        self.unlock_proxy = rospy.ServiceProxy('/ur_hardware_interface/dashboard/brake_release', Trigger)
+        self.unlock_proxy.wait_for_service()
 
-            self.reset_proxy = rospy.ServiceProxy('/ur_hardware_interface/dashboard/play', Trigger)
-            self.reset_proxy.wait_for_service()
+        self.reset_proxy = rospy.ServiceProxy('/ur_hardware_interface/dashboard/play', Trigger)
+        self.reset_proxy.wait_for_service()
 
-            self.recover_cb(EmptyRequest())
+        self.recover_cb(EmptyRequest())
         
 
     def recover_cb(self, req: EmptyRequest) -> EmptyResponse: # pylint: disable=no-self-use

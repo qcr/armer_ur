@@ -2,7 +2,7 @@ robots:
   - name: arm 
     type: armer_ur.robots.URROSRobot
     model: 
-      gripper: tool0
+      gripper: ee_control_link
       qr: [-1.57, -0.96, -2.18, -1.57, 1.57, 0]
     hw_version: cb3
     joint_state_topic: /joint_states # default
@@ -12,7 +12,8 @@ robots:
     singularity_thresh: 0.02
 backend: 
   type: armer.backends.ROS.ROS
+publish_transforms: true
 # readonly_backends:
-#  - type: roboticstoolbox.backends.swift.Swift
+#   - type: roboticstoolbox.backends.swift.Swift
 logging: 
   frequency: false
