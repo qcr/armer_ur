@@ -39,6 +39,7 @@
     </group>
 
     <!-- Launch armer driver -->
+    <node name="kill_robot_state_publisher" pkg="armer_ur" type="kill_robot_state_publisher.sh"/>
     <include file="$(arg robot_description_launch)" />
     <include file="$(find armer)/launch/armer.launch">
         <arg name="config" value="$(arg config)" />
