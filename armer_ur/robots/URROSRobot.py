@@ -20,6 +20,7 @@ from armer_msgs.srv import \
     SetCartesianImpedanceResponse
 
 from ur_dashboard_msgs.msg import RobotMode, SafetyMode
+from ur_dashboard_msgs.srv import Load, LoadRequest
 
 
 
@@ -69,8 +70,14 @@ class URROSRobot(ROSRobot):
         self.unlock_proxy = rospy.ServiceProxy('/ur_hardware_interface/dashboard/brake_release', Trigger)
         self.unlock_proxy.wait_for_service()
 
-        self.reset_proxy = rospy.ServiceProxy('/ur_hardware_interface/dashboard/play', Trigger)
-        self.reset_proxy.wait_for_service()
+        self.load_program_proxy = rospy.ServiceProxy('/ur_hardware_interface/dashboard/load_program', Load)
+        self.load_program_proxy.wait_for_service()
+
+        self.stop_proxy = rospy.ServiceProxy('/ur_hardware_interface/dashboard/stop', Trigger)
+        self.stop_proxy.wait_for_service()
+
+        self.start_proxy = rospy.ServiceProxy('/ur_hardware_interface/dashboard/play', Trigger)
+        self.start_proxy.wait_for_service()
 
         self.recover_cb(EmptyRequest())
         
@@ -89,7 +96,12 @@ class URROSRobot(ROSRobot):
         while not self.robot_state or self.robot_state.mode != RobotMode.RUNNING:
             rospy.sleep(1)
         print('Reset')
-        self.reset_proxy(TriggerRequest())
+        self.stop_proxy(TriggerRequest())
+        rospy.sleep(1.0)
+        req = LoadRequest('/programs/ros-control.urp')
+        self.load_program_proxy(req)
+        rospy.sleep(1.0)
+        self.start_proxy(TriggerRequest())
         return EmptyResponse()
 
     def get_state(self):
