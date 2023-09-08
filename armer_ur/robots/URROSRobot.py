@@ -67,6 +67,9 @@ class URROSRobot(ROSRobot):
         # Error recovery services
         # NOTE: this section should not be run when using CB2 models
         # if self.hw_version == 'cb3':
+        self.close_safety_popup_proxy = rospy.ServiceProxy('/ur_hardware_interface/dashboard/close_safety_popup', Trigger)
+        self.close_safety_popup_proxy.wait_for_service()
+
         self.unlock_proxy = rospy.ServiceProxy('/ur_hardware_interface/dashboard/brake_release', Trigger)
         self.unlock_proxy.wait_for_service()
 
@@ -92,6 +95,8 @@ class URROSRobot(ROSRobot):
         :rtype: EmptyResponse
         """
         print('Recover')
+        self.close_safety_popup_proxy(TriggerRequest())
+        rospy.sleep(1.0)
         self.unlock_proxy(TriggerRequest())
         while not self.robot_state or self.robot_state.mode != RobotMode.RUNNING:
             rospy.sleep(1)
