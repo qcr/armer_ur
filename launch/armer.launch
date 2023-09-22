@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<launch>
+  <include file="$(arg robot_description_launch)" />
+  <include file="$(find armer)/launch/armer.launch">
+      <arg name="config" value="$(arg config)" />
+  </include>
+</launch>

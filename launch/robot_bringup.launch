@@ -39,11 +39,12 @@
     </group>
 
     <!-- Launch armer driver -->
-    <node name="kill_robot_state_publisher" pkg="armer_ur" type="kill_robot_state_publisher.sh"/>
-    <include file="$(arg robot_description_launch)" />
+    <node name="kill_robot_state_publisher" pkg="armer_ur" type="kill_robot_state_publisher.sh" launch-prefix="bash -c 'sleep 5; $0 $@' "/>
+    <node name="armer_launch" pkg="armer_ur" type="launch_armer.sh" args="$(find armer_ur)/launch/armer.launch robot_description_launch:=$(arg robot_description_launch) config:=$(arg config)" launch-prefix="bash -c 'sleep 10; $0 $@' "/>
+    <!-- <include file="$(arg robot_description_launch)" />
     <include file="$(find armer)/launch/armer.launch">
         <arg name="config" value="$(arg config)" />
-    </include>
+    </include> -->
   </group>
 
   <!-- Simulated Robot -->
