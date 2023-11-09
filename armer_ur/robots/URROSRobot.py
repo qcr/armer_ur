@@ -67,6 +67,11 @@ class URROSRobot(ROSRobot):
         # Error recovery services
         # NOTE: this section should not be run when using CB2 models
         # if self.hw_version == 'cb3':
+        self.quit_proxy = rospy.ServiceProxy('/ur_hardware_interface/dashboard/quit', Trigger)
+        self.quit_proxy.wait_for_service()
+        self.connect_proxy = rospy.ServiceProxy('/ur_hardware_interface/dashboard/connect', Trigger)
+        self.connect_proxy.wait_for_service()
+
         self.close_safety_popup_proxy = rospy.ServiceProxy('/ur_hardware_interface/dashboard/close_safety_popup', Trigger)
         self.close_safety_popup_proxy.wait_for_service()
 
@@ -95,18 +100,54 @@ class URROSRobot(ROSRobot):
         :rtype: EmptyResponse
         """
         print('Recover')
-        self.close_safety_popup_proxy(TriggerRequest())
+        # TODO: If these services are not available should we consider an automated reboot?
+        while True:
+            try:
+                rospy.sleep(1.0)
+                rospy.logwarn('Waiting for UR services')
+                self.quit_proxy.wait_for_service(5.0)
+            except rospy.exceptions.ROSException as e:
+                rospy.logerr("Unable to contact UR services - try a reboot...")
+                continue
+
+            try:
+                rospy.sleep(1.0)
+                rospy.logwarn('Attempting to reset UR connection')
+                self.quit_proxy(TriggerRequest())
+            except Exception as e:
+                rospy.logerr("Unable to contact UR services - try a reboot...")
+                continue
+
+            break
+
         rospy.sleep(1.0)
-        self.unlock_proxy(TriggerRequest())
-        while not self.robot_state or self.robot_state.mode != RobotMode.RUNNING:
+        self.connect_proxy(TriggerRequest())
+        rospy.sleep(1.0)
+
+        # NOTE: Commented out naughty stuff...
+        # self.close_safety_popup_proxy(TriggerRequest())
+        # rospy.sleep(1.0)
+        # self.unlock_proxy(TriggerRequest())
+
+        valid_robot_states = [RobotMode.RUNNING, RobotMode.IDLE]
+        while not self.robot_state and self.robot_state.mode not in valid_robot_states:
+            rospy.logwarn(f'Waiting for robot to recover state - currently state {self.robot_state} - goal states {valid_robot_states}')
             rospy.sleep(1)
+
+        # --- Stop / Start of the program
         print('Reset')
         self.stop_proxy(TriggerRequest())
         rospy.sleep(1.0)
-        req = LoadRequest('/programs/ros-control.urp')
-        self.load_program_proxy(req)
-        rospy.sleep(1.0)
+
+        # NOTE: Commented out naughty stuff...
+        # req = LoadRequest('/programs/ros-control.urp')
+        # self.load_program_proxy(req)
+        # rospy.sleep(1.0)
+
         self.start_proxy(TriggerRequest())
+        rospy.sleep(1.0)
+        # ---
+        
         return EmptyResponse()
 
     def get_state(self):
