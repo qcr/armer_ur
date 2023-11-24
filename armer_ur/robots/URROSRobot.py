@@ -130,7 +130,7 @@ class URROSRobot(ROSRobot):
         # self.unlock_proxy(TriggerRequest())
 
         valid_robot_states = [RobotMode.RUNNING, RobotMode.IDLE]
-        while not self.robot_state and self.robot_state.mode not in valid_robot_states:
+        while self.robot_state == None and self.robot_state.mode not in valid_robot_states:
             rospy.logwarn(f'Waiting for robot to recover state - currently state {self.robot_state} - goal states {valid_robot_states}')
             rospy.sleep(1)
 
