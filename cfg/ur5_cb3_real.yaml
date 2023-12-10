@@ -1,7 +1,7 @@
 robots:
   - name: arm # default (change if required)
     type: armer_ur.robots.URROSRobot
-    model:
+    model: roboticstoolbox.models.UR5
       gripper: tool0
       qr: [-3.14, -0.96, -2.18, -1.57, 1.57, 1.5708]
     joint_state_topic: /joint_states # default
