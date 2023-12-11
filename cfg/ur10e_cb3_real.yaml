@@ -3,8 +3,7 @@ robots:
     type: armer_ur.robots.URROSRobot
     model: 
       # tool0 is the default UR ee
-      # ee_control_link can be defined in your custom_env.xacro if required
-      gripper: tool0 # ee_control_link
+      gripper: tool0
       qr: [-1.57, -0.96, -2.18, -1.57, 1.57, 0]
     hw_version: cb3
     joint_state_topic: /joint_states # default
