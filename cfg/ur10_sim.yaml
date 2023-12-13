@@ -12,6 +12,9 @@ robots:
       collision_check_stop_link: wrist_1_link
     joint_state_topic: /joint_states # default
     joint_velocity_topic:  /joint_group_vel_controller/command # default
+    # Define the names of each controller here (this may be custom depending on the robot)
+    velocity_controller: joint_group_vel_controller
+    trajectory_controller: pos_joint_traj_controller
     origin: [0, 0, 0, 0, 0, 0] #default (xyzrpy)
     singularity_thresh: 0.01
 backend: 

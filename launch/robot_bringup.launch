@@ -4,7 +4,6 @@
   <arg name="ur_hw_version"  default="cb3" />
   <arg name="sim" default="false" />
   <arg name="load_gripper" default="false" />
-  <!-- <arg name="robot_description_launch" default="$(find ur_description)/launch/load_$(arg ur_model).launch" doc="Robot description launch file."/> -->
   
   <!-- Handle armer configuration input -->
   <arg name="config_path" default="$(find armer_ur)/cfg" doc="The path to the armer configuration" />

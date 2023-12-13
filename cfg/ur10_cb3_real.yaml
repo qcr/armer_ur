@@ -14,6 +14,9 @@ robots:
     hw_version: cb3
     joint_state_topic: /joint_states # default
     joint_velocity_topic:  /joint_group_vel_controller/command # default
+    # Define the names of each controller here (this may be custom depending on the robot)
+    velocity_controller: joint_group_vel_controller
+    trajectory_controller: pos_joint_traj_controller
     origin: [0, 0, 0, 0, 0, 0] #default (xyzrpy)
     frequency: 100
     singularity_thresh: 0.01
